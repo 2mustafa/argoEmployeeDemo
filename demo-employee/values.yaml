@@ -37,3 +37,9 @@ ingress:
       paths:
         - /
   tls: []
+
+autoscaling:
+  enabled: false  # Set to true if you want Horizontal Pod Autoscaling (HPA) enabled
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
