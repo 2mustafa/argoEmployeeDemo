@@ -28,3 +28,12 @@ postgres:
 serviceAccount:
   create: true
   name: ""
+
+ingress:
+  enabled: false  # Set this to true if you want ingress enabled
+  annotations: {}
+  hosts:
+    - host: demo-employee.local
+      paths:
+        - /
+  tls: []
