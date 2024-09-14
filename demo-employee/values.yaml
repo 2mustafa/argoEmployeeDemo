@@ -1,21 +1,22 @@
 replicaCount: 1
 
 image:
-  repository: your-docker-repo/your-app-name
-  pullPolicy: Always
+  repository: me2stafa/demo-employee
   tag: "latest"
-
-service:
-  type: ClusterIP
-  port: 80
-
-ingress:
-  enabled: false
+  pullPolicy: Always
 
 resources:
   limits:
-    cpu: 500m
-    memory: 512Mi
+    cpu: "500m"
+    memory: "512Mi"
   requests:
-    cpu: 250m
-    memory: 256Mi
+    cpu: "250m"
+    memory: "256Mi"
+
+postgres:
+  host: postgres-service
+  port: 5432
+  database: myDB
+  username: postgres
+  passwordSecret: db-credentials
+  passwordSecretKey: DB_PASSWORD

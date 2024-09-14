@@ -19,10 +19,17 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           ports:
             - containerPort: 8080
-          resources:
-            limits:
-              cpu: {{ .Values.resources.limits.cpu }}
-              memory: {{ .Values.resources.limits.memory }}
-            requests:
-              cpu: {{ .Values.resources.requests.cpu }}
-              memory: {{ .Values.resources.requests.memory }}
+          env:
+            - name: DB_HOST
+              value: {{ .Values.postgres.host }}
+            - name: DB_PORT
+              value: "{{ .Values.postgres.port }}"
+            - name: DB_DATABASE
+              value: {{ .Values.postgres.database }}
+            - name: DB_USERNAME
+              value: {{ .Values.postgres.username }}
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.postgres.passwordSecret }}
+                  key: {{ .Values.postgres.passwordSecretKey }}
